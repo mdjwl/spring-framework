@@ -140,6 +140,8 @@ public abstract class AopConfigUtils {
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);
 		beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 		registry.registerBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME, beanDefinition);
+		//以上代码实现了自动注册注册AnnotationAwareAspectJAutoProxyCreator类的功能，同时还涉及一个优先级的问题
+		//如果已经存在了自动代理创建器与现在的不一致，那么需要根据优先级判断到底使用哪个
 		return beanDefinition;
 	}
 
