@@ -53,13 +53,18 @@ public abstract class AbstractResource implements Resource {
 	 * This will cover both directories and content resources.
 	 */
 	@Override
+	/**
+	 * 判断文件是否存在，若判断过程产生异常（因为会调用SecurityManager来判断），就关闭对应的流
+	 */
 	public boolean exists() {
 		// Try file existence: can we find the file in the file system?
 		try {
+			// 基于 File 进行判断
 			return getFile().exists();
 		}
 		catch (IOException ex) {
 			// Fall back to stream existence: can we open the stream?
+			// 基于 InputStream 进行判断
 			try {
 				getInputStream().close();
 				return true;
@@ -76,6 +81,7 @@ public abstract class AbstractResource implements Resource {
 	 * This implementation always returns {@code true} for a resource
 	 * that {@link #exists() exists} (revised as of 5.1).
 	 */
+
 	@Override
 	public boolean isReadable() {
 		return exists();

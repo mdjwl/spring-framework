@@ -1,1 +1,1 @@
-http\://www.springframework.org/schema/aop
+http\://www.springframework.org/schema/user=com.wanglu.cn.MyNamespaceHandler
